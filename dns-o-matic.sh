@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 CONFIG_DIR=${CONFIG_DIR:-/config}
-HOSTNAME=${HOSTNAME:-all.dnsomatic.com}
+HOST=${HOST:-all.dnsomatic.com}
 WILDCARD=${WILDCARD:-NOCHG}
 MX=${MX:-NOCHG}
 BACKMX=${BACKMX:-NOCHG}
@@ -33,11 +33,11 @@ while true; do
     if [ "${NEW_IP}" = "${OLD_IP}" ]; then
         echo IP is still the same, not updating
     else
-        echo Updating DNS-O-MATIC with ${NEW_IP}
-        LOG=$(curl -s -u "${USERNAME}:${PASSWORD}" "https://updates.dnsomatic.com/nic/update?myip=${NEW_IP}&hostname=${HOSTNAME}&wildcard=${WILDCARD}&mx=${MX}&backmx=${BACKMX}")
+        echo Updating ${HOST} with ${NEW_IP}
+        LOG=$(curl -s -u "${USERNAME}:${PASSWORD}" "https://updates.dnsomatic.com/nic/update?myip=${NEW_IP}&hostname=${HOST}&wildcard=${WILDCARD}&mx=${MX}&backmx=${BACKMX}")
 
         if echo $LOG | grep -q 'good'; then
-            echo Successfully updated ${HOSTNAME} to ${NEW_IP}
+            echo Successfully updated ${HOST} to ${NEW_IP}
             echo ${NEW_IP} > "${IP_FILE}"
         else
             echo Uh oh. Update failed with response...
