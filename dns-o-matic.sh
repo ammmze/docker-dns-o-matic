@@ -6,6 +6,7 @@ WILDCARD=${WILDCARD:-NOCHG}
 MX=${MX:-NOCHG}
 BACKMX=${BACKMX:-NOCHG}
 DELAY=${DELAY:-1h}
+IP_ADDR_PROVIDER=${IP_ADDR_PROVIDER:-"http://myip.dnsomatic.com/"}
 
 IP_FILE=${CONFIG_DIR}/dnsomatic.myip
 
@@ -24,7 +25,7 @@ trap cleanup SIGINT SIGTERM
 
 while true; do
     # fetch your current ip address
-    NEW_IP=$(curl -s http://myip.dnsomatic.com/)
+    NEW_IP=$(curl -s "${IP_ADDR_PROVIDER}")
     OLD_IP=$(test -f "${IP_FILE}" && cat "${IP_FILE}")
 
     echo OLD IP: ${OLD_IP}

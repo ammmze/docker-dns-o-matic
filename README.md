@@ -25,3 +25,4 @@ docker run --name dns-o-matic -e USERNAME=foo -e PASSWORD=bar ammmze/dns-o-matic
 | `WILDCARD` | `NOCNG` | The `wildcard` parameter passed to the [dns-o-matic api](http://dnsomatic.com/wiki/api) |
 | `MX` | `NOCNG` | The `mx` parameter passed to the [dns-o-matic api](http://dnsomatic.com/wiki/api) |
 | `BACKMX` | `NOCNG` | The `backmx` parameter passed to the [dns-o-matic api](http://dnsomatic.com/wiki/api) |
+| `IP_ADDR_PROVIDER` | http://myip.dnsomatic.com/ | Web API that provides the current public IP address to the client. Manually modify if default provider does not respond with 200 OK. Example alternative values: https://api.ipify.org and https://bot.whatismyipaddress.com |
